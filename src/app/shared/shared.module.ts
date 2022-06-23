@@ -7,11 +7,18 @@ import { BrowserModule } from '@angular/platform-browser';
 import { TaskService } from './services/task.service';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { MaterialModule } from './material.module';
 
 @NgModule({
   declarations: [HeaderComponent, FooterComponent],
-  imports: [CommonModule, FormsModule, RouterModule, HttpClientModule],
-  exports: [HeaderComponent, FooterComponent, FormsModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    RouterModule,
+    HttpClientModule,
+    MaterialModule,
+  ],
+  exports: [HeaderComponent, FooterComponent, FormsModule, MaterialModule],
   providers: [TaskService],
 })
 export class SharedModule {}
