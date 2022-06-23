@@ -1,7 +1,14 @@
 <div class="navigation">
-  <ul>
-    <li><a href="portail/todo">Mes tâches</a></li>
-    <li><a href="/portail/profile">Mon profile</a></li>
-    <li><a href="/portail/home">Home</a></li>
+  <ul *ngIf="isForFrontOffice">
+    <li><a routerLink="/portail/todo">Mes tâches</a></li>
+    <li><a routerLink="/portail/profile">Mon profile</a></li>
+    <li><a routerLink="/portail/home">Home</a></li>
+  </ul>
+
+  <ul *ngIf="!isForFrontOffice">
+    <li><a routerLink="/backoffice/dashbord">Dasbord</a></li>
+    <li><a routerLink="/backoffice/todo">Gérer les tâches</a></li>
+    <li><a routerLink="/backoffice/user">Gérer les users</a></li>
+    <li><a routerLink="/backoffice/actu">Gérer les users</a></li>
   </ul>
 </div>
