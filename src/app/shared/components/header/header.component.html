@@ -1,6 +1,10 @@
 <div class="navigation">
   <ul *ngIf="isForFrontOffice">
-    <li><a routerLink="/portail/todo">Mes tâches</a></li>
+    <li>
+      <!-- <a routerLink="/portail/todo">Mes tâches</a> -->
+      <button mat-button [matMenuTriggerFor]="menuTache">Mes taches</button>
+    </li>
+
     <li><a routerLink="/portail/profile">Mon profile</a></li>
     <li><a routerLink="/portail/home">Home</a></li>
   </ul>
@@ -12,3 +16,9 @@
     <li><a routerLink="/backoffice/actu">Gérer les users</a></li>
   </ul>
 </div>
+
+<mat-menu #menuTache="matMenu">
+  <button mat-menu-item routerLink="/portail/todo">All</button>
+  <button mat-menu-item>In progress</button>
+  <button mat-menu-item>Done</button>
+</mat-menu>
