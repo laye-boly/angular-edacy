@@ -1,0 +1,13 @@
+<p>profile works!</p>
+
+<button (click)="goBack()">Aller a la page precedente</button>
+<br />
+
+<button (click)="toggleSpecial()">Toggle Speacial</button>
+
+<div [ngClass]="isSpecial ? 'special' : ''" [ngStyle]="currentStyles">
+  This div is special
+</div>
+
+<h1>Name à updater : {{ name }}</h1>
+<input type="text" [(ngModel)]="name" (ngModelChange)="upperName()" />
