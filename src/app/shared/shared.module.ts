@@ -8,6 +8,7 @@ import { TaskService } from './services/task.service';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from './material.module';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [HeaderComponent, FooterComponent],
@@ -17,8 +18,15 @@ import { MaterialModule } from './material.module';
     RouterModule,
     HttpClientModule,
     MaterialModule,
+    FlexLayoutModule,
   ],
-  exports: [HeaderComponent, FooterComponent, FormsModule, MaterialModule],
+  exports: [
+    HeaderComponent,
+    FooterComponent,
+    FormsModule,
+    MaterialModule,
+    FlexLayoutModule,
+  ],
   providers: [TaskService],
 })
 export class SharedModule {}
