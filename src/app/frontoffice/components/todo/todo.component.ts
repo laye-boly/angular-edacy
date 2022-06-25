@@ -10,7 +10,7 @@ import { TaskService } from 'src/app/shared/services/task.service';
 export class TodoComponent implements OnInit {
   title = 'TODO';
   taskTitle = '';
-  taskStatus = '';
+  taskStatus = 'all';
   tasks: any;
 
   statusSelected = null;
@@ -20,10 +20,14 @@ export class TodoComponent implements OnInit {
     this.taskService.getTasks().subscribe(
       (data) => {
         this.tasks = data;
-        console.log('data');
-        console.log(data);
       },
-      (error) => console.log(error)
+      (error) => {
+        console.log('error');
+        console.log(
+          'indication : vérifier si le serveur est démarré sinon se placer dans app/server et taper la commande python -m http.server'
+        );
+        console.log(error);
+      }
     );
   }
 
@@ -41,10 +45,54 @@ export class TodoComponent implements OnInit {
     // this.taskTitle = '';
   }
 
-  filterTask() {
-    if (this.statusSelected === null) {
-      return this.taskService.getTasks();
-    }
+  filterTask(status = 'all') {
+    console.log('filter method works');
+    this.taskService.getTasks().subscribe(
+      (data) => {
+        let tasks = [];
+        if (status === 'all') {
+          this.tasks = data;
+        } else if (status === 'To Do') {
+          console.log('to do');
+          console.log(status);
+
+          Object.entries(data).forEach((item) => {
+            if (item[1].status === 'To Do') {
+              tasks.push(item[1]);
+            }
+            this.tasks = tasks;
+          });
+        } else if (status === 'Done') {
+          console.log('done');
+          console.log(status);
+
+          Object.entries(data).forEach((item) => {
+            if (item[1].status === 'Done') {
+              tasks.push(item[1]);
+            }
+            this.tasks = tasks;
+          });
+        } else {
+          console.log('progess');
+          console.log(status);
+
+          Object.entries(data).forEach((item) => {
+            if (item[1].status === 'In Progress') {
+              tasks.push(item[1]);
+            }
+            this.tasks = tasks;
+          });
+        }
+      },
+      (error) => {
+        console.log('error');
+        console.log(
+          'indication : vérifier si le serveur est démarré sinon se placer dans app/server et taper la commande python -m http.server'
+        );
+        console.log(error);
+      }
+    );
+
     // return this.taskService
     //   .getTasks()
     //   .filter((task) => this.statusSelected === task.status);

@@ -26,35 +26,30 @@
   </form>
   <div class="row filters">
     <div class="col-sm-3">
-      <button class="btn btn-block btn-default" (click)="statusSelected = null">
+      <button class="btn btn-block btn-default" (click)="filterTask()">
         Tout
       </button>
     </div>
     <div class="col-sm-3">
-      <button
-        class="btn btn-block btn-primary"
-        (click)="statusSelected = 'To Do'"
-      >
+      <button class="btn btn-block btn-primary" (click)="filterTask('To Do')">
         To Do
       </button>
     </div>
     <div class="col-sm-3">
       <button
         class="btn btn-block btn-warning"
-        (click)="statusSelected = 'In Progress'"
+        (click)="filterTask('In Progress')"
       >
         In Progress
       </button>
     </div>
     <div class="col-sm-3">
-      <button
-        class="btn btn-block btn-success"
-        (click)="statusSelected = 'Done'"
-      >
+      <button class="btn btn-block btn-success" (click)="filterTask('Done')">
         Done
       </button>
     </div>
   </div>
+  <pre>{{ tasks | json }}</pre>
   <table class="table table-striped">
     <thead>
       <tr>
@@ -65,7 +60,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let task of filterTask()">
+      <tr *ngFor="let task of tasks">
         <td>{{ task.id }}</td>
         <td>{{ task.title }}</td>
         <td>{{ task.status }}</td>
