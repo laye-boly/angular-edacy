@@ -1,0 +1,32 @@
+<div fxLayout="row" fxLayoutalign="space-between stretch">
+  <div class="sidenav"></div>
+  <div class="bloc-discussion">
+    <form [formGroup]="formGroup" (ngSubmit)="onSubmit(formGroup.value)">
+      <input type="text" placeholder="prenom" formControlName="prenom" /><br />
+      <input type="text" placeholder="nom" [formControlName]="'nom'" /><br />
+      <input
+        type="text"
+        placeholder="adresse"
+        formControlName="adresse"
+      /><br />
+      <input
+        type="number"
+        placeholder="telephone"
+        formControlName="telephone"
+      /><br />
+      <input type="email" placeholder="email" formControlName="email" /><br />
+      <textarea
+        name="message"
+        id=""
+        cols="30"
+        rows="10"
+        formControlName="message"
+      >
+message</textarea
+      ><br />
+      <button mat-raised-button [disabled]="!formGroup.valid" type="submit">
+        envoyer
+      </button>
+    </form>
+  </div>
+</div>

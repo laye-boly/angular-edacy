@@ -20,6 +20,8 @@ export class TodoComponent implements OnInit {
     this.taskService.getTasks().subscribe(
       (data) => {
         this.tasks = data;
+        console.log('data');
+        console.log(data);
       },
       (error) => {
         console.log('error');
@@ -36,62 +38,62 @@ export class TodoComponent implements OnInit {
     this.tasks.splice(taskIndex, 1);
   }
 
-  addTask() {
-    const lastIndex = tasks.length - 1;
-    const id = tasks[lastIndex].id + 1;
-    // this.taskService
-    //   .getTasks()
-    //   .push({ title: this.taskTitle, id, status: this.taskStatus });
-    // this.taskTitle = '';
+  async addTask() {
+    const res = await this.taskService.addTask({
+      title: this.taskTitle,
+      status: this.taskStatus,
+    });
+    console.log('task added');
+    console.log(res);
   }
 
   filterTask(status = 'all') {
     console.log('filter method works');
-    this.taskService.getTasks().subscribe(
-      (data) => {
-        let tasks = [];
-        if (status === 'all') {
-          this.tasks = data;
-        } else if (status === 'To Do') {
-          console.log('to do');
-          console.log(status);
+    // this.taskService.getTasks().subscribe(
+    //   (data) => {
+    //     let tasks = [];
+    //     if (status === 'all') {
+    //       this.tasks = data;
+    //     } else if (status === 'To Do') {
+    //       console.log('to do');
+    //       console.log(status);
 
-          Object.entries(data).forEach((item) => {
-            if (item[1].status === 'To Do') {
-              tasks.push(item[1]);
-            }
-            this.tasks = tasks;
-          });
-        } else if (status === 'Done') {
-          console.log('done');
-          console.log(status);
+    //       Object.entries(data).forEach((item) => {
+    //         if (item[1].status === 'To Do') {
+    //           tasks.push(item[1]);
+    //         }
+    //         this.tasks = tasks;
+    //       });
+    //     } else if (status === 'Done') {
+    //       console.log('done');
+    //       console.log(status);
 
-          Object.entries(data).forEach((item) => {
-            if (item[1].status === 'Done') {
-              tasks.push(item[1]);
-            }
-            this.tasks = tasks;
-          });
-        } else {
-          console.log('progess');
-          console.log(status);
+    //       Object.entries(data).forEach((item) => {
+    //         if (item[1].status === 'Done') {
+    //           tasks.push(item[1]);
+    //         }
+    //         this.tasks = tasks;
+    //       });
+    //     } else {
+    //       console.log('progess');
+    //       console.log(status);
 
-          Object.entries(data).forEach((item) => {
-            if (item[1].status === 'In Progress') {
-              tasks.push(item[1]);
-            }
-            this.tasks = tasks;
-          });
-        }
-      },
-      (error) => {
-        console.log('error');
-        console.log(
-          'indication : vérifier si le serveur est démarré sinon se placer dans app/server et taper la commande python -m http.server'
-        );
-        console.log(error);
-      }
-    );
+    //       Object.entries(data).forEach((item) => {
+    //         if (item[1].status === 'In Progress') {
+    //           tasks.push(item[1]);
+    //         }
+    //         this.tasks = tasks;
+    //       });
+    //     }
+    //   },
+    //   (error) => {
+    //     console.log('error');
+    //     console.log(
+    //       'indication : vérifier si le serveur est démarré sinon se placer dans app/server et taper la commande python -m http.server'
+    //     );
+    //     console.log(error);
+    //   }
+    // );
 
     // return this.taskService
     //   .getTasks()

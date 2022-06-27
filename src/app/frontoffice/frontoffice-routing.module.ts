@@ -5,6 +5,7 @@ import { TodoComponent } from './components/todo/todo.component';
 import { TodoDetailComponent } from './components/todo-detail/todo-detail.component';
 import { HomeComponent } from './components/home/home.component';
 import { FrontofficeComponent } from './frontoffice.component';
+import { ChatComponent } from './components/chat/chat.component';
 
 const routes: Routes = [
   {
@@ -24,6 +25,11 @@ const routes: Routes = [
       {
         path: 'home',
         component: HomeComponent,
+      },
+
+      {
+        path: 'chat',
+        component: ChatComponent,
       },
 
       {
